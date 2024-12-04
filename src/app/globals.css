@@ -91,11 +91,22 @@ body::-webkit-scrollbar-thumb:hover {
 .progress {
   background: linear-gradient(
     90deg,
-    rgba(58, 110, 180, 1) 0%,
-    rgba(126, 212, 87, 1) 20%,
-    rgba(248, 212, 73, 1) 40%,
-    rgba(235, 77, 96, 1) 60%,
-    rgba(180, 96, 231, 1) 80%,
-    rgba(178, 34, 34, 1) 100%
+    var(--color-very-good, #3a6eb4) 0%,
+    var(--color-good, #7ed457) 20%,
+    var(--color-moderate, #f8d449) 40%,
+    var(--color-poor, #eb4d60) 60%,
+    var(--color-very-poor, #b460e7) 80%,
+    var(--color-hazardous, #b22222) 100%
   );
+  height: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.progress[aria-label="Air Quality Index"]::after {
+  content: attr(aria-label);
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  margin-top: 4px;
 }
