@@ -10,13 +10,13 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { Search } from "lucide-react";
-import { useForecastStore } from "@/store/forecastStore";
 import { DialogTitle } from "../ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import { useLocationStore } from "@/store/locationStore";
 
 export const CommandMenu = () => {
   const [open, setOpen] = useState(false);
-  const { setLocation } = useForecastStore();
+  const { setLocation } = useLocationStore();
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {

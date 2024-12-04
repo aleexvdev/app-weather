@@ -70,3 +70,32 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+body::-webkit-scrollbar {
+  width: 6px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #1d1c1c;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 20px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.progress {
+  background: linear-gradient(
+    90deg,
+    rgba(58, 110, 180, 1) 0%,
+    rgba(126, 212, 87, 1) 20%,
+    rgba(248, 212, 73, 1) 40%,
+    rgba(235, 77, 96, 1) 60%,
+    rgba(180, 96, 231, 1) 80%,
+    rgba(178, 34, 34, 1) 100%
+  );
+}

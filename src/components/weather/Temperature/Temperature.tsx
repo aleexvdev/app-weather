@@ -3,17 +3,15 @@
 import { useForecastStore } from "@/store/forecastStore";
 import { clearSky, cloudy, drizzleIcon, rain, snow, navigation } from "@/utils/Icons";
 import { kelvinToCelsius } from "@/utils/misc";
-// import { Calendar, Droplets, MapPin, Wind } from "lucide-react";
 import { useMemo } from "react";
 import moment from "moment";
 
 export const Temperature = () => {
+
   const { currentForecast: forecast, loading } = useForecastStore();
   
   const { main, timezone = 0, name = "", weather = [] } = forecast || {};
   const { main: weatherMain = "", description = "" } = weather[0] || {};
-
-  console.log("forecast", forecast);
 
   const weatherIcon = useMemo(() => {
     switch (weather[0]?.main) {
@@ -35,20 +33,6 @@ export const Temperature = () => {
   const temp = kelvinToCelsius(main?.temp as number);
   const minTemp = kelvinToCelsius(main?.temp_min as number);
   const maxTemp = kelvinToCelsius(main?.temp_max as number);
-
-  /* const [localTime, setLocalTime] = useState<string>("");
-  const [currentDay, setCurrentDay] = useState<string>("");
-
-  useEffect(() => {
-    // Actualizar hora local cada segundo
-    const interval = setInterval(() => {
-      const localMoment = moment().utcOffset(timezone / 60);
-      setLocalTime(localMoment.format("HH:mm:ss"));
-      setCurrentDay(localMoment.format("dddd"));
-    }, 50000);
-
-    return () => clearInterval(interval);
-  }, [timezone]); */
 
   if (loading) return <div>Loading...</div>;
 
@@ -73,7 +57,7 @@ export const Temperature = () => {
 
   return (
     <div
-      className="w-full col-span-2 p-6 border rounded-lg flex flex-col justify-between 
+      className="w-full col-span-2 row-span-2 p-6 border rounded-lg flex flex-col justify-between 
         dark:bg-dark-grey shadow-md dark:shadow-none bg-background text-gray-800 dark:text-white"
     >
       <header className="flex justify-between items-center pb-4 border-b">

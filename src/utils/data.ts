@@ -35,3 +35,9 @@ export const defaultStates = [
     lon: 2.1774322,
   },
 ];
+
+export const initialLocation = {
+  lat: 44.34,
+  lon: 10.99,
+  name: 'Province of Turin',
+};

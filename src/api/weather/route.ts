@@ -1,4 +1,4 @@
-import { ApiResponse } from "@/types";
+import { ApiResponse } from "@/types/forecastTypes";
 import { NextRequest, NextResponse } from "next/server";
 
 interface WeatherData {
