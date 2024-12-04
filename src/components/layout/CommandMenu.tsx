@@ -42,8 +42,8 @@ export const CommandMenu = () => {
         className="flex items-center gap-4 px-4 py-2 rounded-lg bg-muted hover:bg-muted/80"
       >
         <Search className="w-4 h-4" />
-        <span className="text-sm">Search city...</span>
-        <kbd className="ml-2 text-xs bg-background px-2 py-1 rounded">⌘K</kbd>
+        <span className="text-sm hidden md:block">Search city...</span>
+        <kbd className="ml-2 text-xs bg-background px-2 py-1 rounded hidden md:block">⌘K</kbd>
       </button>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <DialogTitle>

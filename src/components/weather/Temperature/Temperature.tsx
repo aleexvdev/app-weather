@@ -67,7 +67,7 @@ export const Temperature = () => {
 
   return (
     <div
-      className="w-full col-span-2 row-span-2 py-4 px-6 rounded-2xl shadow-lg 
+      className="w-full col-span-1 lg:col-span-2 row-span-1 lg:row-span-2 py-4 px-6 rounded-2xl shadow-lg 
       bg-gradient-to-br from-blue-400 via-blue-400 to-blue-500 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 
       text-white dark:text-gray-200"
     >
