@@ -39,7 +39,7 @@ export const AirPollution = () => {
           </span>
         </p>
         <span
-          className={`px-3 py-1 text-sm rounded-full font-semibold text-black dark:text-white ${airQualityColor}`}
+          className={`px-3 py-1 text-sm rounded-full font-semibold text-black dark:text-black ${airQualityColor}`}
         >
           {airQualityDescription}
         </span>
