@@ -13,10 +13,13 @@ import { Search } from "lucide-react";
 import { DialogTitle } from "../ui/dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useLocationStore } from "@/store/locationStore";
+import { useGeolocationStore } from "@/store/geolocationStore";
 
 export const CommandMenu = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const [query, setQuery] = useState<string>("");
   const { setLocation } = useLocationStore();
+  const { geolocation, loading, fetchGeolocation } = useGeolocationStore();
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -28,13 +31,26 @@ export const CommandMenu = () => {
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
   }, []);
-  const cities = [
-    { name: "New York", lat: 40.7128, lon: -74.006 },
-    { name: "London", lat: 51.5074, lon: -0.1278 },
-    { name: "Tokyo", lat: 35.6762, lon: 139.6503 },
-    { name: "Paris", lat: 48.8566, lon: 2.3522 },
-    { name: "Sydney", lat: -33.8688, lon: 151.2093 },
-  ];
+
+  const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.trim();
+    setQuery(value);
+    if (value.length >= 3) {
+      fetchGeolocation(value);
+    }
+  };
+
+  useEffect(() => {
+    const handleKeydown = (e: KeyboardEvent) => {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setOpen((prev) => !prev);
+      }
+    };
+    document.addEventListener("keydown", handleKeydown);
+    return () => document.removeEventListener("keydown", handleKeydown);
+  }, []);
+
   return (
     <>
       <button
@@ -43,28 +59,44 @@ export const CommandMenu = () => {
       >
         <Search className="w-4 h-4" />
         <span className="text-sm hidden md:block">Search city...</span>
-        <kbd className="ml-2 text-xs bg-background px-2 py-1 rounded hidden md:block">⌘K</kbd>
+        <kbd className="ml-2 text-xs bg-background px-2 py-1 rounded hidden md:block">
+          ⌘K
+        </kbd>
       </button>
-      <CommandDialog open={open} onOpenChange={setOpen}>
+      <CommandDialog key={query} open={open} onOpenChange={setOpen}>
         <DialogTitle>
           <VisuallyHidden>City Search Dialog</VisuallyHidden>
         </DialogTitle>
-        <CommandInput placeholder="Search for a city..." />
+        <CommandInput
+          placeholder="Search for a city..."
+          onChangeCapture={handleQueryChange}
+          value={query}
+        />
         <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading="Suggestions">
-            {cities.map((city) => (
-              <CommandItem
-                key={city.name}
-                onSelect={() => {
-                  setLocation(city.lat, city.lon, city.name);
-                  setOpen(false);
-                }}
-              >
-                {city.name}
-              </CommandItem>
-            ))}
-          </CommandGroup>
+          {loading && <div className="p-4 text-sm text-muted">Loading...</div>}
+          {geolocation?.length === 0 ||
+            (!geolocation && <CommandEmpty>No results found.</CommandEmpty>)}
+          {geolocation && geolocation.length > 0 && (
+            <CommandGroup heading="Suggestions">
+              {geolocation.map((city) => (
+                <CommandItem
+                  key={city.lat}
+                  onSelect={() => {
+                    setLocation(city.lat, city.lon, city.name);
+                    setOpen(false);
+                  }}
+                >
+                  <div className="flex items-center gap-x-2">
+                    <span className="font-semibold text-base">
+                      {city.country}
+                    </span>
+                    <span className="text-base font-medium">{city.name}</span>
+                    <span className="text-base font-medium">{city.state}</span>
+                  </div>
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          )}
         </CommandList>
       </CommandDialog>
     </>
