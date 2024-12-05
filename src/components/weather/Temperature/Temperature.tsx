@@ -69,7 +69,7 @@ export const Temperature = () => {
     <div
       className="w-full col-span-1 lg:col-span-2 row-span-1 lg:row-span-2 py-4 px-6 rounded-2xl shadow-lg 
       bg-gradient-to-br from-blue-400 via-blue-400 to-blue-500 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 
-      text-white dark:text-gray-200"
+      text-white dark:text-gray-200 flex flex-col justify-between"
     >
       <header className="flex justify-between items-center pb-4 border-b border-white/25">
         <span className="font-semibold text-xl text-white dark:text-white">{currentDay}</span>

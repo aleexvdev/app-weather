@@ -19,6 +19,7 @@ interface CurrentForecast {
     sea_level?: number;
     grnd_level?: number;
   };
+  visibility?: number;
   wind?: {
     speed: number;
     deg: number;

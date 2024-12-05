@@ -2,10 +2,16 @@
 
 import { AirPollution } from "./weather/AirPollution/AirPollution";
 import { DailyForecast } from "./weather/DailyForecast/DailyForecast";
+import { FeelsLike } from "./weather/FeelsLike/FeelsLike";
+import { Humidity } from "./weather/Humidity/Humidity";
+import { Population } from "./weather/Population/Population";
+import { Precipitation } from "./weather/Precipitation/Precipitation";
+import { Pressure } from "./weather/Pressure/Pressure";
 import { Sunrise } from "./weather/Sunrise/Sunrise";
 import { Sunset } from "./weather/Sunset/Sunset";
 import { Temperature } from "./weather/Temperature/Temperature";
 import { UvIndex } from "./weather/UvIndex/UvIndex";
+import { Visibility } from "./weather/Visibility/Visibility";
 import { Wind } from "./weather/Wind/Wind";
 
 export const WeatherGrid = () => {
@@ -19,6 +25,12 @@ export const WeatherGrid = () => {
         <DailyForecast />
         <UvIndex />
         <Wind />
+        <FeelsLike />
+        <Humidity />
+        <Pressure />
+        <Precipitation />
+        <Visibility />
+        <Population />
       </div>
     </div>
   )

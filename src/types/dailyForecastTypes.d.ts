@@ -1,3 +1,16 @@
+interface City {
+  id: number;
+  name: string;
+  coord: {
+    lat: number;
+    lon: number;
+  };
+  country: string;
+  population: number;
+  timezone: number;
+  sunrise: number;
+  sunset: number;
+}
 interface DailyForecast {
   dt: number;
   main: {
@@ -19,6 +32,7 @@ interface DailyForecast {
 
 export interface DailyForecastState {
   dailyForecast: DailyForecast[] | null;
+  city: City | null;
   loading: boolean;
   error: string | null;
   setLoading: (loading: boolean) => void;
