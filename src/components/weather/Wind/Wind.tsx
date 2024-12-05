@@ -30,7 +30,7 @@ export const Wind = () => {
       className="w-full col-span-1 md:col-span-1 lg:col-span-1 row-span-1 py-4 px-6 rounded-lg flex flex-col gap-4 shadow-lg 
       bg-gradient-to-b from-stone-700 to-stone-900 dark:from-gray-900 dark:to-black text-gray-300"
     >
-      <h2 className="flex items-center gap-3 text-xl font-semibold text-blue-200 dark:text-white">
+      <h2 className="flex items-center gap-3 text-xl font-semibold text-blue-300 dark:text-white">
         <WindIcon className="w-6 h-6" /> Wind
       </h2>
       <div className="relative flex flex-col items-center justify-center">
@@ -40,7 +40,7 @@ export const Wind = () => {
             alt="Compass body"
             width={120}
             height={120}
-            className="opacity-80"
+            className="opacity-100 dark:opacity-80"
           />
           <img
             src="/compass_arrow.svg"

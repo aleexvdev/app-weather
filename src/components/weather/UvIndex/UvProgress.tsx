@@ -28,7 +28,7 @@ const UvProgress = React.forwardRef<
       className="h-full w-full flex items-center justify-start"
       style={{ transform: `translateX(${value}%)` }}
     >
-      <div className="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-b-[10px] mt-1 border-b-black -translate-x-1/2" />
+      <div className="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-b-[10px] mt-1 border-b-black dark:border-b-stone-900 -translate-x-1/2" />
     </ProgressPrimitive.Indicator>
   </ProgressPrimitive.Root>
 ));

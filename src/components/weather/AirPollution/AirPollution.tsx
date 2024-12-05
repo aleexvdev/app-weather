@@ -39,12 +39,12 @@ export const AirPollution = () => {
           </span>
         </p>
         <span
-          className={`px-3 py-1 text-sm rounded-full font-semibold text-black dark:text-black ${airQualityColor}`}
+          className={`px-3 py-1 text-sm rounded-full font-semibold text-black dark:text-white ${airQualityColor}`}
         >
           {airQualityDescription}
         </span>
       </div>
-      <p className="text-sm text-center mt-1 text-gray-600 dark:text-gray-400">
+      <p className="text-sm text-center mt-1 text-black dark:text-white font-medium">
         The air quality index represents the condition of the air in your area.
       </p>
     </div>

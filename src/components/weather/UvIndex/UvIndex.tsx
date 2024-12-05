@@ -59,13 +59,13 @@ export const UvIndex = () => {
         <Sun className="w-6 h-6" /> Uv Index
       </h2>
       <div className="flex items-center justify-between mt-2">
-        <p className="text-2xl">{uvIndexMax}</p>
-        <span className="text-xl">{uvIndexCategory(uvIndexMax).text}</span>
+        <p className="text-2xl font-semibold">{uvIndexMax}</p>
+        <span className="text-xl font-semibold">{uvIndexCategory(uvIndexMax).text}</span>
       </div>
       <div className="w-full">
         <UvProgress value={marginLeftPercentage} />
       </div>
-      <p className="text-base text-center mt-1 text-gray-600 dark:text-gray-400">
+      <p className="text-base text-center mt-1 text-black dark:text-white font-medium">
         {uvIndexCategory(uvIndexMax).protection}
       </p>
     </div>
