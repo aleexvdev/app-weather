@@ -6,6 +6,7 @@ import { Sunrise } from "./weather/Sunrise/Sunrise";
 import { Sunset } from "./weather/Sunset/Sunset";
 import { Temperature } from "./weather/Temperature/Temperature";
 import { UvIndex } from "./weather/UvIndex/UvIndex";
+import { Wind } from "./weather/Wind/Wind";
 
 export const WeatherGrid = () => {
   return (
@@ -17,6 +18,7 @@ export const WeatherGrid = () => {
         <Sunrise />
         <DailyForecast />
         <UvIndex />
+        <Wind />
       </div>
     </div>
   )
