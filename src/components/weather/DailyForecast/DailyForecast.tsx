@@ -12,9 +12,8 @@ import { CalendarDays } from "lucide-react";
 import moment from "moment";
 
 export const DailyForecast = () => {
-  const { dailyForecast, loading, error } = useDailyForecastStore();
 
-  console.log(dailyForecast);
+  const { dailyForecast, loading, error } = useDailyForecastStore();
 
   if (loading) {
     return <div>Loading...</div>;
