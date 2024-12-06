@@ -30,7 +30,7 @@ export const MapComponent = () => {
       <MapContainer
         center={[lat, lon]}
         zoom={13}
-        className="col-span-3 rounded-lg shadow-md px-6 py-4"
+        className="col-span-1 lg:col-span-3 row-span-2 min-h-60 md:min-h-full rounded-lg shadow-md px-6 py-4"
         style={{ height: "100%", width: "100%" }}
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
