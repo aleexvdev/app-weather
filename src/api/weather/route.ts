@@ -1,4 +1,4 @@
-import { ApiResponse } from "@/types/forecastTypes";
+// import { ApiResponse } from "@/types/forecastTypes";
 import { NextRequest, NextResponse } from "next/server";
 
 interface WeatherData {
@@ -10,6 +10,7 @@ interface WeatherData {
   sys: { country: string; sunrise: number; sunset: number };
   name: string;
 }
+
 
 async function fetchWeatherData(lat: string, lon: string, apiKey: string): Promise<WeatherData> {
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
@@ -27,7 +28,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     const apiKey = process.env.OPENWEATHERMAP_API_KEY;
 
     if (!apiKey) {
-      return NextResponse.json<ApiResponse<null>>(
+      return NextResponse.json(
         { success: false, message: "API key is missing" },
         { status: 500 }
       );
@@ -38,7 +39,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     const lon = searchParams.get("lon");
 
     if (!lat || !lon) {
-      return NextResponse.json<ApiResponse<null>>(
+      return NextResponse.json(
         { success: false, message: "Latitude and longitude are required" },
         { status: 400 }
       );
@@ -46,7 +47,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
 
     const weatherData = await fetchWeatherData(lat, lon, apiKey);
 
-    return NextResponse.json<ApiResponse<WeatherData>>({
+    return NextResponse.json({
       success: true,
       data: weatherData,
     });
@@ -54,7 +55,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     const errorMessage = (error as Error).message || "Unknown error occurred";
     console.error("Error fetching forecast data:", errorMessage);
 
-    return NextResponse.json<ApiResponse<null>>(
+    return NextResponse.json(
       {
         success: false,
         message: "Failed to fetch forecast data",
