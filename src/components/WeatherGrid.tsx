@@ -5,6 +5,7 @@ import { DailyForecast } from "./weather/DailyForecast/DailyForecast";
 import { FeelsLike } from "./weather/FeelsLike/FeelsLike";
 import { FiveDaysForecast } from "./weather/FiveDaysForecast";
 import { Humidity } from "./weather/Humidity/Humidity";
+import { MapComponent } from "./weather/Mapbox/MapComponent";
 import { Population } from "./weather/Population/Population";
 import { Precipitation } from "./weather/Precipitation/Precipitation";
 import { Pressure } from "./weather/Pressure/Pressure";
@@ -33,6 +34,7 @@ export const WeatherGrid = () => {
         <Visibility />
         <Population />
         <FiveDaysForecast />
+        <MapComponent />
       </div>
     </div>
   )

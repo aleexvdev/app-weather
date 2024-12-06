@@ -13,7 +13,7 @@ export const Population = () => {
   if (!city) return <div>No Population data found.</div>;
 
   const formatPopulation = formatNumber(city.population as number);
-  const populationText = (city.population) ? formatPopulation.toLocaleString() : "No data.";
+  const populationText = (city.population) ? formatPopulation.toLocaleString() : "?";
 
   return (
     <div
