@@ -1,5 +1,12 @@
 export const defaultStates = [
   {
+    name: "Lima",
+    country: "PE",
+    state: "Lima",
+    lat: -12.04318,
+    lon: -77.02824,
+  },
+  {
     name: "Madrid",
     country: "ES",
     state: "Madrid",
