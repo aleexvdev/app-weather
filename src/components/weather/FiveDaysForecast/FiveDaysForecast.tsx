@@ -84,7 +84,7 @@ export const FiveDaysForecast = () => {
       <h2 className="flex items-center gap-2 text-xl font-semibold text-white dark:text-blue-100">
         <Calendar className="w-6 h-6" /> 5-Day Forecast
       </h2>
-      <div className="pt-1">
+      <div className="mt-1">
         {fiveDaysForecasts.map((day, i) => {
           const dayText = i === 0 ? "Today" : day.day;
           return (

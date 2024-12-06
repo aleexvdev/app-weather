@@ -28,13 +28,6 @@ export const defaultStates = [
     lon: -74.006,
   },
   {
-    name: "Sydney",
-    country: "AU",
-    state: "New South Wales",
-    lat: -33.8688197,
-    lon: 151.2092955,
-  },
-  {
     name: "Barcelona",
     country: "ES",
     state: "Catalonia",

@@ -20,12 +20,13 @@ export const OtherCities = () => {
           defaultStates.map((state, i) => (
             <button
               key={i}
-              className="flex items-center justify-between gap-2 rounded-lg bg-gradient-to-b from-gray-200 via-gray-300 to-gray-400 
+              className="flex items-center justify-start gap-2 rounded-lg bg-gradient-to-b from-gray-200 via-gray-300 to-gray-400 
               dark:from-gray-800 dark:to-black text-gray-300 hover:scale-105 transition-all
               px-4 py-2 shadow-xl cursor-pointer"
               onClick={() => setLocation(state.lat, state.lon, state.name)}
             >
-              <span className="text-sm font-semibold text-black dark:text-white">{state.name}</span>
+              <span className="text-sm font-semibold text-black dark:text-white">{state.country}</span>
+              <span className="text-sm font-medium text-black dark:text-white">{state.name}</span>
             </button>
           ))
         }

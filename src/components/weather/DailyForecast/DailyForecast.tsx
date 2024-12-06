@@ -67,27 +67,23 @@ export const DailyForecast = () => {
   if (filteredForecast.length === 0) {
     return (
       <div
-        className="w-full col-span-1 md:col-span-2 row-span-1 py-4 px-6 rounded-lg flex flex-col gap-4 shadow-lg 
+        className="w-full col-span-1 md:col-span-2 row-span-1 py-4 px-6 rounded-lg flex flex-col justify-between gap-4 shadow-lg 
           bg-gradient-to-b from-stone-700 to-stone-900 dark:from-gray-900 dark:to-black text-gray-300"
       >
         <h2 className="flex items-center gap-2 text-xl font-semibold text-purple-100 dark:text-purple-200">
           <CalendarDays className="w-6 h-6" /> Daily Forecast
         </h2>
-        <Carousel className="relative">
-          <CarouselContent className="flex justify-center gap-4">
-            <CarouselItem>
-              <div
-                className="flex flex-col items-center justify-center gap-1 py-1 px-2 rounded-lg shadow-xl 
+        <div className="h-full flex items-center justify-center">
+          <div
+            className="flex items-center justify-center gap-1 py-1 px-2 rounded-lg shadow-xl 
                 bg-gradient-to-b from-blue-500 via-blue-600 to-purple-500 dark:from-blue-400 dark:via-purple-500 dark:to-purple-800 
-                hover:scale-105 transition-all m-1 cursor-grab min-h-14"
-              >
-                <p className="text-base text-white dark:text-black font-semibold">
-                  No data available
-                </p>
-              </div>
-            </CarouselItem>
-          </CarouselContent>
-        </Carousel>
+                hover:scale-105 transition-all m-1 min-h-12 w-full"
+          >
+            <p className="text-base text-white dark:text-black font-semibold">
+              No data available
+            </p>
+          </div>
+        </div>
       </div>
     );
   }
