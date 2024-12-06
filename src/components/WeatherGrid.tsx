@@ -3,6 +3,7 @@
 import { AirPollution } from "./weather/AirPollution/AirPollution";
 import { DailyForecast } from "./weather/DailyForecast/DailyForecast";
 import { FeelsLike } from "./weather/FeelsLike/FeelsLike";
+import { FiveDaysForecast } from "./weather/FiveDaysForecast";
 import { Humidity } from "./weather/Humidity/Humidity";
 import { Population } from "./weather/Population/Population";
 import { Precipitation } from "./weather/Precipitation/Precipitation";
@@ -31,6 +32,7 @@ export const WeatherGrid = () => {
         <Precipitation />
         <Visibility />
         <Population />
+        <FiveDaysForecast />
       </div>
     </div>
   )

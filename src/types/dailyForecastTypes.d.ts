@@ -11,6 +11,7 @@ interface City {
   sunrise: number;
   sunset: number;
 }
+
 interface DailyForecast {
   dt: number;
   main: {

@@ -13,6 +13,9 @@ export const airQulaityIndexText = [
   { rating: 60, description: "Hazardous", color: "bg-burgundy" },
 ];
 
+export const unixToDay = (unix: number) => {
+  return moment.unix(unix).format("ddd");
+};
 
 export const unixToTime = (unix: number, timezone: number) => {
   return moment

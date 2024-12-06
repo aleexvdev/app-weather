@@ -6,13 +6,14 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { useDailyForecastStore } from "@/store/dailyForecastStore";
-import { clearSky, cloudy, drizzleIcon, rain, snow } from "@/utils/Icons";
+import { useForecastStore } from "@/store/forecastStore";
+import { CalendarDays, Cloud, CloudDrizzle, CloudRain, CloudSun, Cloudy, Snowflake } from "lucide-react";
 import { kelvinToCelsius } from "@/utils/misc";
-import { CalendarDays } from "lucide-react";
 import moment from "moment";
 
 export const DailyForecast = () => {
   const { dailyForecast, loading, error } = useDailyForecastStore();
+  const { currentForecast } = useForecastStore();
 
   if (loading) {
     return <div>Loading...</div>;
@@ -30,22 +31,32 @@ export const DailyForecast = () => {
     );
   }
 
+
   const getWeatherIcon = (main: string) => {
     switch (main) {
       case "Drizzle":
-        return drizzleIcon;
+        return <CloudDrizzle size={20} />;
       case "Rain":
-        return rain;
+        return <CloudRain size={20} />;
       case "Snow":
-        return snow;
+        return <Snowflake size={20} />;
       case "Clear":
-        return clearSky;
+        return <Cloud size={20} />;
       case "Clouds":
-        return cloudy;
+        return <Cloudy size={20} />;
       default:
-        return clearSky;
+        return <CloudSun size={20} />;
     }
   };
+
+
+  const currentDay = currentForecast?.dt
+    ? moment.unix(currentForecast.dt).format("YYYY-MM-DD")
+    : moment().format("YYYY-MM-DD");
+
+  const filteredForecast = dailyForecast.filter((forecast) =>
+    moment(forecast.dt_txt).format("YYYY-MM-DD") === currentDay
+  );
 
   return (
     <div
@@ -56,15 +67,15 @@ export const DailyForecast = () => {
         <CalendarDays className="w-6 h-6" /> Daily Forecast
       </h2>
       <Carousel className="relative">
-        <CarouselContent className="flex gap-4">
-          {dailyForecast.map((forecast) => {
+        <CarouselContent className="flex justify-center gap-4">
+          {filteredForecast.map((forecast) => {
             const { dt_txt, main, weather } = forecast;
             const weatherMain = weather[0]?.main || "Clear";
             const icon = getWeatherIcon(weatherMain);
             return (
               <CarouselItem
                 key={dt_txt}
-                className={`flex flex-col items-center justify-between gap-1 p-1 rounded-lg shadow-xl 
+                className={`flex flex-col items-center justify-between gap-1 py-1 px-2 rounded-lg shadow-xl 
                   bg-gradient-to-b from-blue-500 via-blue-600 to-purple-500 dark:from-blue-400 dark:via-purple-500 dark:to-purple-800 
                   hover:scale-105 transition-all m-1 cursor-grab`}
                 style={{
@@ -72,8 +83,8 @@ export const DailyForecast = () => {
                   minWidth: "calc(33.33% - 1rem)",
                 }}
               >
-                <p className="text-sm text-white dark:text-black font-medium">
-                  {moment(dt_txt).format("ddd hh:mm A")}
+                <p className="text-sm text-white dark:text-black font-semibold">
+                  {moment(dt_txt).format("hh:mm A")}
                 </p>
                 <div className="flex items-center justify-center gap-x-1">
                   <div className="text-5xl text-white dark:text-black">

@@ -13,6 +13,7 @@ export const Population = () => {
   if (!city) return <div>No Population data found.</div>;
 
   const formatPopulation = formatNumber(city.population as number);
+  const populationText = (city.population) ? formatPopulation.toLocaleString() : "No data.";
 
   return (
     <div
@@ -23,7 +24,7 @@ export const Population = () => {
         <UsersRound className="w-6 h-6" /> Population
       </h2>
       <p className="text-5xl text-center font-bold text-white">
-        {formatPopulation.toLocaleString()}
+        {populationText}
       </p>
       <p className="text-sm text-center text-white font-medium">
         Latest UN population data for {city.name}.

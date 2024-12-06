@@ -33,7 +33,7 @@ export default function Home() {
   }, [location, fetchUvIndex]);
 
   return (
-    <main className="w-full h-full min-h-screen max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+    <main className="w-full h-full min-h-screen max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
       <WeatherGrid />
     </main>
   );
