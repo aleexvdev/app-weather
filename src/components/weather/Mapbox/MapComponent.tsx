@@ -1,46 +1,41 @@
-"use client";
+/* "use client";
 
-import { useEffect, useMemo } from "react";
-import { useLocationStore } from "@/store/locationStore";
+import { useEffect } from "react";
 import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { getMarkerIcon } from "@/utils/misc";
 
-function MapUpdater() {
-  const map = useMap();
-  const { location } = useLocationStore();
-  const { lat, lon } = location;
-
-  useEffect(() => {
-    if (!lat && !lon) {
-      map.setView([lat, lon], 13);
-    }
-  }, [lat, lon, map]);
-
-  return null;
+interface MapUpdaterProps {
+  coordinates: [number, number];
 }
 
-export const MapComponent = () => {
-  const { location } = useLocationStore();
-  const { lat, lon } = location;
+function MapUpdater({ coordinates }: MapUpdaterProps) {
+  const map = useMap()
 
-  const map = useMemo(() => {
-    if (!lat && !lon) return null;
-    return (
-      <MapContainer
-        center={[lat, lon]}
-        zoom={13}
-        className="col-span-1 md:col-span-2 lg:col-span-3 row-span-2 lg:row-span-1 min-h-60 md:min-h-full rounded-lg shadow-md px-6 py-4"
-        style={{ height: "100%", width: "100%" }}
-      >
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        <Marker position={[lat, lon]} icon={getMarkerIcon()} />
-        <MapUpdater />
-      </MapContainer>
-    );
-  }, [lat, lon]);
+  useEffect(() => {
+    map.setView(coordinates, 13)
+  }, [coordinates, map])
 
-  if (!lat && !lon) return null;
+  return null
+}
 
-  return <>{map}</>;
+interface MapComponentProps {
+  coordinates: [number, number];
+}
+
+export const MapComponent = ({ coordinates }: MapComponentProps) => {
+
+  return (
+    <MapContainer
+      center={coordinates}
+      zoom={13}
+      className="col-span-1 md:col-span-2 lg:col-span-3 row-span-2 lg:row-span-1 min-h-60 md:min-h-full rounded-lg shadow-md px-6 py-4"
+      style={{ height: "100%", width: "100%" }}
+    >
+      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+      <Marker position={coordinates} icon={getMarkerIcon()} />
+      <MapUpdater coordinates={coordinates} />
+    </MapContainer>
+  );
 };
+ */
