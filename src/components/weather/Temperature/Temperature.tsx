@@ -16,8 +16,8 @@ import { Navigation } from "lucide-react";
 export const Temperature = () => {
   const { currentForecast: forecast, loading } = useForecastStore();
 
-  const { main, timezone = 0, name = "", weather = [] } = forecast || {};
-  const { main: weatherMain = "", description = "" } = weather[0] || {};
+  const { main: weatherMain, timezone = 0, name = "", weather = [] } = forecast || {};
+  const { description = "" } = weather[0] || {};
 
   const weatherIcon = useMemo(() => {
     switch (weather[0]?.main) {
@@ -34,11 +34,11 @@ export const Temperature = () => {
       default:
         return clearSky;
     }
-  }, [weatherMain]);
+  }, [weather]);  
 
-  const temp = kelvinToCelsius(main?.temp as number);
-  const minTemp = kelvinToCelsius(main?.temp_min as number);
-  const maxTemp = kelvinToCelsius(main?.temp_max as number);
+  const temp = kelvinToCelsius(weatherMain?.temp as number);
+  const minTemp = kelvinToCelsius(weatherMain?.temp_min as number);
+  const maxTemp = kelvinToCelsius(weatherMain?.temp_max as number);
 
   if (loading) return <div>Loading...</div>;
 
