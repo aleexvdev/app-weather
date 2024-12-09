@@ -22,7 +22,7 @@ export const DynamicMapbox = () => {
       container: mapContainer.current,
       style: `https://api.maptiler.com/maps/streets/style.json?key=${API_KEY_MAP}`,
       center: [Number(currentForecast.coord.lon), Number(currentForecast.coord.lat)],
-      zoom: 10,
+      zoom: 9,
       scrollZoom: false,
       dragPan: false,
       doubleClickZoom: false,
