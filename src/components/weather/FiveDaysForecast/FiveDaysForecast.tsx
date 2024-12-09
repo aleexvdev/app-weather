@@ -78,7 +78,7 @@ export const FiveDaysForecast = () => {
 
   return (
     <div
-      className="w-full col-span-1 md:col-span-1 lg:col-span-2 row-span-1 py-4 px-6 rounded-lg flex flex-col justify-between gap-4 shadow-lg 
+      className="w-full col-span-1 md:col-span-1 lg:col-span-4 row-span-1 py-4 px-6 rounded-lg flex flex-col justify-between gap-4 shadow-lg 
       bg-gradient-to-b from-stone-700 via-stone-800 to-stone-900 dark:from-stone-800 dark:to-stone-900"
     >
       <h2 className="flex items-center gap-2 text-xl font-semibold text-white dark:text-blue-100">
