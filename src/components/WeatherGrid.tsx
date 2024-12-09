@@ -1,5 +1,6 @@
 "use client";
 
+// import dynamic from "next/dynamic";
 import { AirPollution } from "./weather/AirPollution/AirPollution";
 import { DailyForecast } from "./weather/DailyForecast/DailyForecast";
 import { FeelsLike } from "./weather/FeelsLike/FeelsLike";
@@ -15,6 +16,16 @@ import { Temperature } from "./weather/Temperature/Temperature";
 import { UvIndex } from "./weather/UvIndex/UvIndex";
 import { Visibility } from "./weather/Visibility/Visibility";
 import { Wind } from "./weather/Wind/Wind";
+import { DynamicMapbox } from "./weather/Mapbox/DynamicMapbox";
+
+// interface DynamicMapboxProps {}
+
+/* const DynamicMapbox = dynamic<DynamicMapboxProps>(() => 
+  import('@/components/weather/Mapbox/DynamicMapbox').then((mod) => mod.DynamicMapbox),
+{
+  ssr: false,
+  loading: () => <p>Loading map...</p>
+}); */
 
 export const WeatherGrid = () => {
   return (
@@ -34,6 +45,10 @@ export const WeatherGrid = () => {
         <Visibility />
         <Population />
         <FiveDaysForecast />
+        {/* <div className="w-full col-span-1 md:col-span-2 lg:col-span-3 min-h-60 md:min-h-full rounded-lg shadow-lg">
+          
+        </div> */}
+        <DynamicMapbox />
         <OtherCities />
       </div>
     </div>
