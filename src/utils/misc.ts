@@ -1,5 +1,5 @@
 import moment from "moment";
-// import L from 'leaflet';
+import L from 'leaflet';
 
 export const kelvinToCelsius = (kelvin: number) => {
   return Math.round(kelvin - 273.15);
@@ -35,7 +35,7 @@ export const formatNumber = (num: number) => {
   }
 };
 
-/* export const getMarkerIcon = () => {
+export const getMarkerIcon = () => {
   return L.icon({
     iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
     iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
@@ -45,4 +45,4 @@ export const formatNumber = (num: number) => {
     popupAnchor: [1, -34],
     shadowSize: [41, 41]
   });
-}; */
+};

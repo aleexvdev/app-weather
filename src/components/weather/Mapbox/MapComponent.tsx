@@ -1,23 +1,9 @@
 /* "use client";
 
-import { useEffect } from "react";
-import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
+import { useEffect, useRef } from "react";
+import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { getMarkerIcon } from "@/utils/misc";
-
-interface MapUpdaterProps {
-  coordinates: [number, number];
-}
-
-function MapUpdater({ coordinates }: MapUpdaterProps) {
-  const map = useMap()
-
-  useEffect(() => {
-    map.setView(coordinates, 13)
-  }, [coordinates, map])
-
-  return null
-}
 
 interface MapComponentProps {
   coordinates: [number, number];
@@ -25,17 +11,40 @@ interface MapComponentProps {
 
 export const MapComponent = ({ coordinates }: MapComponentProps) => {
 
-  return (
-    <MapContainer
-      center={coordinates}
-      zoom={13}
-      className="col-span-1 md:col-span-2 lg:col-span-3 row-span-2 lg:row-span-1 min-h-60 md:min-h-full rounded-lg shadow-md px-6 py-4"
-      style={{ height: "100%", width: "100%" }}
-    >
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      <Marker position={coordinates} icon={getMarkerIcon()} />
-      <MapUpdater coordinates={coordinates} />
-    </MapContainer>
-  );
-};
- */
+  const mapRef = useRef<L.Map | null>(null);
+  const mapContainerId = `mapa-${coordinates.join("-")}`;
+
+  useEffect(() => {
+    if (mapRef.current) {
+      mapRef.current.remove();
+      mapRef.current = null;
+    }
+
+    const map = L.map(mapContainerId, {
+      center: coordinates,
+      zoom: 13,
+      scrollWheelZoom: false,
+      dragging: false, 
+      zoomControl: false,
+      doubleClickZoom: false,
+      keyboard: false, 
+    });
+    mapRef.current = map;
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap contributors',
+    }).addTo(map);
+
+    L.marker(coordinates, { icon: getMarkerIcon() }).addTo(map);
+
+    return () => {
+      if (mapRef.current) {
+        mapRef.current.remove();
+        mapRef.current = null;
+      }
+    };
+  }, [mapContainerId, coordinates]);
+
+  return <div id={mapContainerId} key={mapContainerId} style={{ height: "100%", width: "100%", borderRadius: "10px" }} />;
+}; */
