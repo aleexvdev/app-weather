@@ -5,6 +5,8 @@ import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { useForecastStore } from '@/store/forecastStore';
 
+const API_KEY_MAP = process.env.NEXT_PUBLIC_MAP_API_KEY;
+
 export const DynamicMapbox = () => {
   const { currentForecast, loading, error } = useForecastStore();
   const mapContainer = useRef<HTMLDivElement>(null);
@@ -18,7 +20,7 @@ export const DynamicMapbox = () => {
 
     map.current = new maplibregl.Map({
       container: mapContainer.current,
-      style: 'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL',
+      style: `https://api.maptiler.com/maps/streets/style.json?key=${API_KEY_MAP}`,
       center: [Number(currentForecast.coord.lon), Number(currentForecast.coord.lat)],
       zoom: 10,
       scrollZoom: false,
