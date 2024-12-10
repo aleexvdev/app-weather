@@ -4,11 +4,10 @@ import { useForecastStore } from "@/store/forecastStore";
 import { Gauge } from "lucide-react";
 
 export const Pressure = () => {
-  const { currentForecast: forecast, loading } = useForecastStore();
+  const { currentForecast: forecast, loading, error } = useForecastStore();
 
-  if (loading) return <div>Loading...</div>;
-
-  if (!forecast || !forecast.main) return <div>No pressure data found.</div>;
+  if (loading) return renderSkeleton();
+  if (error || !forecast || !forecast.main) return renderNoData();
 
   const { pressure } = forecast.main;
 
@@ -40,3 +39,28 @@ export const Pressure = () => {
     </div>
   );
 };
+
+const renderSkeleton = () => (
+  <div
+    className="w-full col-span-1 row-span-1 py-4 px-6 rounded-lg flex flex-col gap-2 shadow-lg 
+      bg-gradient-to-b from-indigo-400 via-indigo-700 to-indigo-900 dark:from-indigo-800 dark:to-gray-900"
+  >
+    <div className="h-6 bg-gray-300 dark:bg-gray-500 rounded-md animate-pulse w-1/3"></div>
+    <div className="h-12 bg-gray-300 dark:bg-gray-500 rounded-md animate-pulse w-2/3 mx-auto mt-2"></div>
+    <div className="h-4 bg-gray-300 dark:bg-gray-500 rounded-md animate-pulse w-1/2 mx-auto"></div>
+  </div>
+);
+
+const renderNoData = () => (
+  <div
+    className="w-full col-span-1 row-span-1 py-4 px-6 rounded-lg flex flex-col gap-2 shadow-lg 
+      bg-gradient-to-b from-indigo-400 via-indigo-700 to-indigo-900 dark:from-indigo-800 dark:to-gray-900 text-gray-700 dark:text-gray-100"
+  >
+    <h2 className="flex items-center gap-3 text-xl font-semibold text-white dark:text-white">
+      <Gauge className="w-6 h-6" /> Pressure
+    </h2>
+    <p className="text-center text-sm text-white dark:text-gray-300 font-medium mt-4">
+      No pressure data available. Please check your connection or try again later.
+    </p>
+  </div>
+);

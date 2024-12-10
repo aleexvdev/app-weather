@@ -56,16 +56,12 @@ export const DynamicMapbox = () => {
     }
   }, [mapLoaded, currentForecast]);
 
-  if (loading) {
-    return <div className="w-full col-span-1 md:col-span-2 lg:col-span-3 min-h-60 md:min-h-full rounded-lg shadow-lg flex items-center justify-center bg-gray-200">Cargando mapa...</div>;
-  }
-
-  if (error) {
-    return <div className="w-full col-span-1 md:col-span-2 lg:col-span-3 min-h-60 md:min-h-full rounded-lg shadow-lg flex items-center justify-center bg-red-200">Error: {error}</div>;
+  if (loading || error) {
+    return <div className="w-full col-span-1 md:col-span-2 lg:col-span-3 min-h-60 md:min-h-full rounded-lg shadow-lg flex items-center justify-center bg-gray-400 dark:bg-gray-700 animate-pulse"></div>;
   }
 
   if (!currentForecast) {
-    return <div className="w-full col-span-1 md:col-span-2 lg:col-span-3 min-h-60 md:min-h-full rounded-lg shadow-lg flex items-center justify-center bg-yellow-200">No hay datos de pronóstico disponibles</div>;
+    return <div className="w-full col-span-1 md:col-span-2 lg:col-span-3 min-h-60 md:min-h-full rounded-lg shadow-lg flex items-center justify-center bg-gray-400 dark:bg-gray-800">No map data available. Please check your connection or try again later.</div>;
   }
 
   return <div ref={mapContainer} className="w-full col-span-1 md:col-span-2 lg:col-span-3 min-h-60 md:min-h-full rounded-lg shadow-lg" />;

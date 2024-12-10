@@ -7,21 +7,8 @@ import { Calendar, Cloud, CloudDrizzle, CloudRain, CloudSun, Cloudy, Snowflake }
 export const FiveDaysForecast = () => {
   const { dailyForecast, loading, error } = useDailyForecastStore();
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div className="text-center py-10 text-red-500">Error: {error}</div>;
-  }
-
-  if (!dailyForecast || dailyForecast.length === 0) {
-    return (
-      <div className="text-center py-10">
-        <h1 className="text-xl font-semibold">No Data Available!</h1>
-      </div>
-    );
-  }
+  if (loading) return renderSkeleton();
+  if (error || !dailyForecast || dailyForecast.length === 0) return renderNoData();
 
   const processData = (
     dailyData: {
@@ -108,3 +95,31 @@ export const FiveDaysForecast = () => {
     </div>
   );
 };
+
+const renderSkeleton = () => (
+  <div
+    className="w-full col-span-1 md:col-span-1 lg:col-span-2 row-span-1 py-4 px-6 rounded-lg flex flex-col gap-2 shadow-lg 
+      bg-gradient-to-b from-stone-700 via-stone-800 to-stone-900 dark:from-stone-800 dark:to-stone-900"
+  >
+    <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded-md animate-pulse w-1/3"></div>
+    <div className="h-12 bg-gray-200 dark:bg-gray-700 rounded-md animate-pulse w-2/3 mx-auto mt-2"></div>
+    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded-md animate-pulse w-1/2 mx-auto"></div>
+    <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded-md animate-pulse w-1/3"></div>
+    <div className="h-12 bg-gray-200 dark:bg-gray-700 rounded-md animate-pulse w-2/3 mx-auto mt-2"></div>
+    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded-md animate-pulse w-1/2 mx-auto"></div>
+  </div>
+);
+
+const renderNoData = () => (
+  <div
+    className="w-full col-span-1 md:col-span-1 lg:col-span-2 row-span-1 py-4 px-6 rounded-lg flex flex-col justify-between gap-2 shadow-lg 
+      bg-gradient-to-b from-stone-700 via-stone-800 to-stone-900 dark:from-stone-800 dark:to-stone-900"
+  >
+    <h2 className="flex items-center gap-3 text-xl font-semibold text-blue-600 dark:text-blue-300">
+      <Calendar className="w-6 h-6" /> 5-Day Forecast
+    </h2>
+    <p className="text-center text-base text-black dark:text-white font-medium mt-4 flex items-center h-full">
+      No data available. Check your connection or try again later.
+    </p>
+  </div>
+);

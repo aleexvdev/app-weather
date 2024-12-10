@@ -6,11 +6,10 @@ import { airQulaityIndexText } from "@/utils/misc";
 import { ThermometerSun } from "lucide-react";
 
 export const AirPollution = () => {
-  const { airPollution, loading } = useAirPollutionStore();
+  const { airPollution, loading, error } = useAirPollutionStore();
 
-  if (loading) return <div>Loading...</div>;
-
-  if (!airPollution) return <div>No air pollution data found.</div>;
+  if (loading || error) return renderSkeleton();
+  if (!airPollution) return renderNoData();
 
   const airQualityIndex = airPollution.list[0]?.main?.aqi * 10 || 0;
   const filteredIndex = airQulaityIndexText.find((item) => item.rating === airQualityIndex);
@@ -50,3 +49,28 @@ export const AirPollution = () => {
     </div>
   );
 };
+
+const renderSkeleton = () => (
+  <div
+    className="w-full col-span-1 md:col-span-1 lg:col-span-2 row-span-1 py-4 px-6 rounded-lg flex flex-col gap-4 shadow-lg 
+      bg-gradient-to-b from-gray-300 via-gray-400 to-gray-500 dark:from-gray-700 dark:to-gray-800"
+  >
+    <div className="h-6 bg-gray-300 dark:bg-gray-600 rounded-md animate-pulse w-1/3"></div>
+    <div className="h-6 bg-gray-300 dark:bg-gray-600 rounded-md animate-pulse w-full mt-2"></div>
+    <div className="h-6 bg-gray-300 dark:bg-gray-600 rounded-md animate-pulse w-1/4 mt-2"></div>
+  </div>
+);
+
+const renderNoData = () => (
+  <div
+    className="w-full col-span-1 md:col-span-1 lg:col-span-2 row-span-1 py-4 px-6 rounded-lg flex flex-col gap-4 shadow-lg 
+      bg-gradient-to-b from-gray-300 via-gray-400 to-gray-500 dark:from-gray-700 dark:to-gray-800 text-gray-700 dark:text-gray-100"
+  >
+    <h2 className="flex items-center gap-3 text-xl font-semibold text-gray-800 dark:text-gray-200">
+      <ThermometerSun className="w-6 h-6" /> Air Pollution
+    </h2>
+    <p className="text-center text-lg text-gray-800 dark:text-gray-300 font-medium mt-4">
+      No air pollution data available. Please try again later.
+    </p>
+  </div>
+);
