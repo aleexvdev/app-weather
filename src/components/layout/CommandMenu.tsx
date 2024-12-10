@@ -1,25 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
 import { Search } from "lucide-react";
-import { DialogTitle } from "../ui/dialog";
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { useLocationStore } from "@/store/locationStore";
-import { useGeolocationStore } from "@/store/geolocationStore";
+import { ModalSearch } from "./ModalSearch";
 
 export const CommandMenu = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const [query, setQuery] = useState<string>("");
-  const { setLocation } = useLocationStore();
-  const { geolocation, loading, fetchGeolocation } = useGeolocationStore();
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -31,14 +17,6 @@ export const CommandMenu = () => {
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
   }, []);
-
-  const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.trim();
-    setQuery(value);
-    if (value.length >= 3) {
-      fetchGeolocation(value);
-    }
-  };
 
   useEffect(() => {
     const handleKeydown = (e: KeyboardEvent) => {
@@ -63,7 +41,8 @@ export const CommandMenu = () => {
           ⌘K
         </kbd>
       </button>
-      <CommandDialog key={query} open={open} onOpenChange={setOpen}>
+      <ModalSearch isOpen={open} onClose={() => setOpen(false)} />
+      {/* <CommandDialog key={query} open={open} onOpenChange={setOpen}>
         <DialogTitle>
           <VisuallyHidden>City Search Dialog</VisuallyHidden>
         </DialogTitle>
@@ -98,7 +77,7 @@ export const CommandMenu = () => {
             </CommandGroup>
           )}
         </CommandList>
-      </CommandDialog>
+      </CommandDialog> */}
     </>
   );
 };

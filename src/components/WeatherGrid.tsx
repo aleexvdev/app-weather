@@ -1,6 +1,5 @@
 "use client";
 
-// import dynamic from "next/dynamic";
 import { AirPollution } from "./weather/AirPollution/AirPollution";
 import { DailyForecast } from "./weather/DailyForecast/DailyForecast";
 import { FeelsLike } from "./weather/FeelsLike/FeelsLike";
