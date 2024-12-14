@@ -1,5 +1,6 @@
 "use client";
 
+import { Footer } from "@/components/Footer";
 import { WeatherGrid } from "@/components/WeatherGrid";
 import { useAirPollutionStore } from "@/store/airPollutionStore";
 import { useDailyForecastStore } from "@/store/dailyForecastStore";
@@ -33,8 +34,9 @@ export default function Home() {
   }, [location, fetchUvIndex]);
 
   return (
-    <main className="w-full h-full min-h-screen max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+    <main className="w-full h-full min-h-screen max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
       <WeatherGrid />
+      <Footer />
     </main>
   );
 }
