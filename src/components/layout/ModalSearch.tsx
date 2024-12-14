@@ -75,7 +75,7 @@ export const ModalSearch = ({ isOpen, onClose }: ModalSearchProps) => {
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="bg-white dark:bg-[#2c2c2c] rounded-lg shadow-lg w-full max-w-md mx-4 sm:mx-auto"
+            className="bg-[#dfdfdf] dark:bg-[#2c2c2c] rounded-lg shadow-lg w-full max-w-md mx-4 sm:mx-auto"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
