@@ -2,7 +2,7 @@
 
 ![Weather Dashboard Preview](https://github.com/aleexvdev/app-weather/blob/main/preview.png)
 
-A beautiful, modern weather dashboard built with Next.js 13, inspired by [DariusLukasukas](https://github.com/DariusLukasukas/nextjs-weather-app) stunning weather app design. This project combines elegant UI design with powerful functionality to deliver a premium weather tracking experience.
+A beautiful, modern weather dashboard built with Next.js 15, inspired by [DariusLukasukas](https://github.com/DariusLukasukas/nextjs-weather-app) stunning weather app design. This project combines elegant UI design with powerful functionality to deliver a premium weather tracking experience.
 
 ## ✨ Features
 
