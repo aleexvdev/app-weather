@@ -57,12 +57,12 @@ export const DynamicMapbox = () => {
   }, [mapLoaded, currentForecast]);
 
   if (loading || error) {
-    return <div className="w-full col-span-1 md:col-span-2 lg:col-span-3 min-h-60 md:min-h-full rounded-lg shadow-lg flex items-center justify-center bg-gray-400 dark:bg-gray-700 animate-pulse"></div>;
+    return <div className="w-full col-span-2 md:col-span-2 lg:col-span-3 min-h-60 md:min-h-full rounded-lg shadow-lg flex items-center justify-center bg-gray-400 dark:bg-gray-700 animate-pulse"></div>;
   }
 
   if (!currentForecast) {
-    return <div className="w-full col-span-1 md:col-span-2 lg:col-span-3 min-h-60 md:min-h-full rounded-lg shadow-lg flex items-center justify-center bg-gray-400 dark:bg-gray-800">No map data available. Please check your connection or try again later.</div>;
+    return <div className="w-full col-span-2 md:col-span-2 lg:col-span-3 min-h-60 md:min-h-full rounded-lg shadow-lg flex items-center justify-center bg-gray-400 dark:bg-gray-800">No map data available. Please check your connection or try again later.</div>;
   }
 
-  return <div ref={mapContainer} className="w-full col-span-1 md:col-span-2 lg:col-span-3 min-h-60 md:min-h-full rounded-lg shadow-lg" />;
+  return <div ref={mapContainer} className="w-full col-span-2 md:col-span-2 lg:col-span-3 min-h-60 md:min-h-full rounded-lg shadow-lg" />;
 };

@@ -65,7 +65,7 @@ export const FiveDaysForecast = () => {
 
   return (
     <div
-      className="w-full col-span-1 md:col-span-1 lg:col-span-2 row-span-1 py-4 px-6 rounded-lg flex flex-col justify-between gap-4 shadow-lg 
+      className="w-full col-span-2 md:col-span-2 lg:col-span-2 row-span-1 py-4 px-6 rounded-lg flex flex-col justify-between gap-4 shadow-lg 
       bg-gradient-to-b from-stone-700 via-stone-800 to-stone-900 dark:from-stone-800 dark:to-stone-900"
     >
       <h2 className="flex items-center gap-2 text-xl font-semibold text-white dark:text-blue-100">
@@ -98,7 +98,7 @@ export const FiveDaysForecast = () => {
 
 const renderSkeleton = () => (
   <div
-    className="w-full col-span-1 md:col-span-1 lg:col-span-2 row-span-1 py-4 px-6 rounded-lg flex flex-col gap-2 shadow-lg 
+    className="w-full col-span-2 md:col-span-1 lg:col-span-2 row-span-1 py-4 px-6 rounded-lg flex flex-col gap-2 shadow-lg 
       bg-gradient-to-b from-stone-700 via-stone-800 to-stone-900 dark:from-stone-800 dark:to-stone-900"
   >
     <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded-md animate-pulse w-1/3"></div>
@@ -112,7 +112,7 @@ const renderSkeleton = () => (
 
 const renderNoData = () => (
   <div
-    className="w-full col-span-1 md:col-span-1 lg:col-span-2 row-span-1 py-4 px-6 rounded-lg flex flex-col justify-between gap-2 shadow-lg 
+    className="w-full col-span-2 md:col-span-1 lg:col-span-2 row-span-1 py-4 px-6 rounded-lg flex flex-col justify-between gap-2 shadow-lg 
       bg-gradient-to-b from-stone-700 via-stone-800 to-stone-900 dark:from-stone-800 dark:to-stone-900"
   >
     <h2 className="flex items-center gap-3 text-xl font-semibold text-blue-600 dark:text-blue-300">

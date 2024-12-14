@@ -18,7 +18,7 @@ export const AirPollution = () => {
 
   return (
     <div
-      className={`w-full col-span-1 md:col-span-1 lg:col-span-2 row-span-1 py-4 px-6 rounded-lg flex flex-col gap-4 shadow-lg 
+      className={`w-full col-span-2 md:col-span-1 lg:col-span-2 row-span-1 py-4 px-6 rounded-lg flex flex-col gap-4 shadow-lg 
       bg-gradient-to-b from-blue-200 to-blue-300 dark:from-stone-800 dark:to-stone-900`}
     >
       <h2 className="flex items-center gap-3 text-xl font-semibold text-blue-800 dark:text-blue-300">

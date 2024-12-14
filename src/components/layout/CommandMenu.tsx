@@ -33,7 +33,7 @@ export const CommandMenu = () => {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="flex items-center gap-4 px-4 py-2 rounded-lg bg-muted hover:bg-muted/80"
+        className="flex items-center gap-4 px-4 py-2 h-10 rounded-lg bg-muted hover:bg-muted/80"
       >
         <Search className="w-4 h-4" />
         <span className="text-sm hidden md:block">Search city...</span>

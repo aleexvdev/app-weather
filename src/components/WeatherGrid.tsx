@@ -20,7 +20,7 @@ import { DynamicMapbox } from "./weather/Mapbox/DynamicMapbox";
 export const WeatherGrid = () => {
   return (
     <div className="mt-2 flex items-center w-full h-full">
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 lg:grid-rows-2 w-full h-full gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 lg:grid-rows-2 w-full h-full gap-4">
         <Temperature />
         <AirPollution />
         <Sunset />
