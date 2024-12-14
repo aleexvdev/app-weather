@@ -1,10 +1,13 @@
 "use client";
 
 import { useForecastStore } from "@/store/forecastStore";
-import { kelvinToCelsius } from "@/utils/misc";
+import { useGradeStore } from "@/store/gradeStore";
+import { kelvinToCelsius, kelvinToFahrenheit } from "@/utils/misc";
 import { Thermometer } from "lucide-react";
 
 export const FeelsLike = () => {
+
+  const { grade } = useGradeStore();
   const { currentForecast: forecast, loading, error } = useForecastStore();
 
   if (loading) return renderSkeleton();
@@ -38,7 +41,7 @@ export const FeelsLike = () => {
         <Thermometer className="w-6 h-6" /> Feels Like
       </h2>
       <p className="text-5xl text-center font-bold mt-2 text-black dark:text-white">
-        {kelvinToCelsius(feels_like)}°
+        {grade === 'C' ? kelvinToCelsius(feels_like) : kelvinToFahrenheit(feels_like)}°{grade === 'C' ? 'C' : 'F'}
       </p>
       <p className="text-sm text-center text-black dark:text-white font-medium">
         {feelsLikeDescription}

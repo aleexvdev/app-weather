@@ -1,10 +1,13 @@
 "use client";
 
 import { useDailyForecastStore } from "@/store/dailyForecastStore";
-import { kelvinToCelsius, unixToDay } from "@/utils/misc";
+import { useGradeStore } from "@/store/gradeStore";
+import { kelvinToCelsius, kelvinToFahrenheit, unixToDay } from "@/utils/misc";
 import { Calendar, Cloud, CloudDrizzle, CloudRain, CloudSun, Cloudy, Snowflake } from "lucide-react";
 
 export const FiveDaysForecast = () => {
+
+  const { grade } = useGradeStore();
   const { dailyForecast, loading, error } = useDailyForecastStore();
 
   if (loading) return renderSkeleton();
@@ -33,8 +36,8 @@ export const FiveDaysForecast = () => {
 
     return {
       day: unixToDay(dailyData[0].dt),
-      minTemp: kelvinToCelsius(minTemp),
-      maxTemp: kelvinToCelsius(maxTemp),
+      minTemp: grade === 'C' ? kelvinToCelsius(minTemp) : kelvinToFahrenheit(minTemp),
+      maxTemp: grade === 'C' ? kelvinToCelsius(maxTemp) : kelvinToFahrenheit(maxTemp),
       main: dailyData[0].weather[0]?.main,
     };
   };
@@ -84,9 +87,9 @@ export const FiveDaysForecast = () => {
                 <p className="text-sm text-white">{getWeatherIcon(day.main)}</p>
               </div>
               <div className="flex-1 flex items-center justify-between gap-4">
-                <p className="font-medium text-sm text-white">{day.minTemp}°C</p>
+                <p className="font-medium text-sm text-white">{day.minTemp}°{grade === 'C' ? 'C' : 'F'}</p>
                 <div className="flex-1 w-full h-2 rounded-lg bg-gradient-to-r from-blue-400 via-green-500 to-yellow-500"></div>
-                <p className="font-medium text-sm text-white">{day.maxTemp}°C</p>
+                <p className="font-medium text-sm text-white">{day.maxTemp}°{grade === 'C' ? 'C' : 'F'}</p>
               </div>
             </div>
           );

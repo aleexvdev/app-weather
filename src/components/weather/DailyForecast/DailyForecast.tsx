@@ -16,10 +16,13 @@ import {
   Cloudy,
   Snowflake,
 } from "lucide-react";
-import { kelvinToCelsius } from "@/utils/misc";
+import { kelvinToCelsius, kelvinToFahrenheit } from "@/utils/misc";
 import moment from "moment";
+import { useGradeStore } from "@/store/gradeStore";
 
 export const DailyForecast = () => {
+
+  const { grade } = useGradeStore();
   const { dailyForecast, loading, error } = useDailyForecastStore();
   const { currentForecast } = useForecastStore();
 
@@ -70,7 +73,7 @@ export const DailyForecast = () => {
             return (
               <CarouselItem
                 key={dt_txt}
-                className={`h-full min-h-28 flex flex-col items-center justify-between gap-1 py-1 px-2 rounded-lg shadow-xl 
+                className={`h-full min-h-28 w-max min-w-36 flex flex-col items-center justify-between gap-1 py-1 px-2 rounded-lg shadow-xl 
                   bg-gradient-to-b from-blue-500 via-blue-600 to-purple-500 dark:from-blue-400 dark:via-purple-500 dark:to-purple-800 
                   hover:scale-105 transition-all m-1 cursor-grab`}
                 style={{
@@ -86,7 +89,7 @@ export const DailyForecast = () => {
                     {icon}
                   </div>
                   <p className="text-xl font-bold text-white dark:text-black">
-                    {kelvinToCelsius(main.temp)}°C
+                    {grade === 'C' ? kelvinToCelsius(main.temp) : kelvinToFahrenheit(main.temp)}°{grade === 'C' ? 'C' : 'F'}
                   </p>
                 </div>
                 <p className="text-sm text-gray-100 dark:text-black capitalize w-full text-center font-medium">

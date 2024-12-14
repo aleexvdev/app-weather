@@ -4,6 +4,14 @@ export const kelvinToCelsius = (kelvin: number) => {
   return Math.round(kelvin - 273.15);
 };
 
+export const celsiusToFahrenheit = (celsius: number) => {
+  return Math.round((celsius * 9) / 5 + 32);
+};
+
+export const kelvinToFahrenheit = (kelvin: number) => {
+  return celsiusToFahrenheit(kelvinToCelsius(kelvin));
+};
+
 export const airQulaityIndexText = [
   { rating: 10, description: "Very Good", color: "bg-green-400" },
   { rating: 20, description: "Good", color: "bg-yellow-300" },

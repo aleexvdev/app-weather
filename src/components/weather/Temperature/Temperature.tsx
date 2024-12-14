@@ -2,12 +2,15 @@
 
 import { useForecastStore } from "@/store/forecastStore";
 import { clearSky, cloudy, drizzleIcon, rain, snow } from "@/utils/Icons";
-import { kelvinToCelsius } from "@/utils/misc";
+import { kelvinToCelsius, kelvinToFahrenheit } from "@/utils/misc";
 import { useMemo } from "react";
 import moment from "moment";
 import { Navigation } from "lucide-react";
+import { useGradeStore } from "@/store/gradeStore";
 
 export const Temperature = () => {
+
+  const { grade } = useGradeStore();
   const { currentForecast: forecast, loading, error } = useForecastStore();
 
   const {
@@ -35,9 +38,9 @@ export const Temperature = () => {
     }
   }, [weather]);
 
-  const temp = kelvinToCelsius(weatherMain?.temp as number);
-  const minTemp = kelvinToCelsius(weatherMain?.temp_min as number);
-  const maxTemp = kelvinToCelsius(weatherMain?.temp_max as number);
+  const temp = grade === 'C' ? kelvinToCelsius(weatherMain?.temp as number) : kelvinToFahrenheit(weatherMain?.temp as number);
+  const minTemp = grade === 'C' ? kelvinToCelsius(weatherMain?.temp_min as number) : kelvinToFahrenheit(weatherMain?.temp_min as number);
+  const maxTemp = grade === 'C' ? kelvinToCelsius(weatherMain?.temp_max as number) : kelvinToFahrenheit(weatherMain?.temp_max as number);
 
   if (loading || !forecast || !weather || error) {
     return (
@@ -95,7 +98,7 @@ export const Temperature = () => {
           {name}{" "}
           <Navigation className="w-6 h-6 text-blue-800 dark:text-blue-300" />
         </h2>
-        <p className="text-9xl font-bold my-4">{temp}°</p>
+        <p className="text-9xl font-bold my-4">{temp}°{grade === 'C' ? 'C' : 'F'}</p>
         <div className="flex items-center gap-4">
           <span className="text-6xl">{weatherIcon}</span>
           <p className="capitalize text-2xl font-medium">{description}</p>
